@@ -27,7 +27,7 @@
   }
 
   .title-span {
-    font-size: 5em;
+    font-size: 5rem;
     color: #9d6079;
   }
 
