@@ -1,17 +1,18 @@
+<script>
+  import ButtonComponent from '../components/ButtonComponent.svelte';
+  import LabelInputComponent from '../components/LabelInputComponent.svelte';
+</script>
+
 <main>
   <div class="main-div">
     <div class="panel-div">
       <span class="title-span">Yobu LIVE!</span>
       <div class="input-div">
-        <div class="cell-div">
-          <span class="input-label-span">Username</span>
-          <input class="input" type="text" />
-        </div>
-        <div class="cell-div">
-          <span class="input-label-span">Password</span>
-          <input class="input" type="password" />
-        </div>
+        <LabelInputComponent type="text" title="Username" />
+        <LabelInputComponent type="password" title="Password" />
       </div>
+      <ButtonComponent label="Login" />
+      <span class="click-span">Click here to register</span>
     </div>
   </div>
 </main>
@@ -51,29 +52,17 @@
   .input-div {
     display: flex;
     flex-direction: column;
+    margin: 1em 0;
   }
 
-  .cell-div {
-    display: flex;
-    flex-direction: row;
-    margin: 0.5em;
+  .click-span {
+    text-decoration: underline;
+    margin: 2em;
+    font-size: 0.75rem;
   }
 
-  .input-label-span {
-    width: 40%;
-    font-weight: 300;
-  }
-
-  .input {
-    width: 15em;
-    color: white;
-    background-color: #ffa5b9;
-    border: none;
-    border-radius: 10px;
-    padding: 0.5em 1em;
-  }
-
-  .input:focus {
-    outline: none;
+  .click-span:hover {
+    opacity: 0.5;
+    cursor: pointer;
   }
 </style>
