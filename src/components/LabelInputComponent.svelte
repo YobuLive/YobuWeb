@@ -16,7 +16,8 @@
   }
 
   .input-label-span {
-    width: 30%;
+    width: 50%;
+    margin: 0 0.25em;
     font-weight: 300;
     line-height: 2em;
   }

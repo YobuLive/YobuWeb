@@ -1,18 +1,38 @@
-<script>
+<script lang="ts">
   import ButtonComponent from '../components/ButtonComponent.svelte';
   import LabelInputComponent from '../components/LabelInputComponent.svelte';
+
+  let isLoginFormShown: boolean = true;
+
+  const toggleForm = (): void => {
+    isLoginFormShown = !isLoginFormShown;
+  };
+
+  const loginUser = (): void => {
+    console.log('Login');
+  };
 </script>
 
 <main>
   <div class="main-div">
     <div class="panel-div">
-      <span class="title-span">Yobu LIVE!</span>
-      <div class="input-div">
-        <LabelInputComponent type="text" title="Username" />
-        <LabelInputComponent type="password" title="Password" />
-      </div>
-      <ButtonComponent label="Login" />
-      <span class="click-span">Click here to register</span>
+      {#if isLoginFormShown}
+        <span class="title-span">Yobu LIVE!</span>
+        <div class="input-div">
+          <LabelInputComponent type="text" title="Username" />
+          <LabelInputComponent type="password" title="Password" />
+        </div>
+        <ButtonComponent label="Login" onPress={loginUser} />
+        <span class="click-span" on:click={toggleForm}>Click here to register</span>
+      {:else}
+        <div class="input-div">
+          <LabelInputComponent type="text" title="Email" />
+          <LabelInputComponent type="password" title="Password" />
+          <LabelInputComponent type="password" title="Re-Password" />
+        </div>
+        <ButtonComponent label="Register" onPress={toggleForm} />
+        <span class="click-span" on:click={toggleForm}>Have an account? Login here!</span>
+      {/if}
     </div>
   </div>
 </main>
@@ -33,7 +53,7 @@
   .panel-div {
     min-height: 40%;
     min-width: 25%;
-    padding: 1em;
+    padding: 0.5em;
     background-color: #9d6079;
     border-radius: 20px;
     display: flex;

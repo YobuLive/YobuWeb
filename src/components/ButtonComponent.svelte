@@ -1,8 +1,9 @@
 <script lang="ts">
   export let label: string;
+  export let onPress: Function;
 </script>
 
-<button class="component-button" on:click={() => console.log('Clicked')}>{label}</button>
+<button class="component-button" on:click={() => onPress()}>{label}</button>
 
 <style>
   .component-button {
