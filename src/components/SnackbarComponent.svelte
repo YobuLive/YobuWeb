@@ -64,6 +64,7 @@
     padding: 1em 1.5em 1em 1em;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: pre-wrap;
   }
 
   @media screen and (min-width: 1024px) {

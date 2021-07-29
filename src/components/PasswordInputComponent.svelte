@@ -5,7 +5,7 @@
 
 <div class="cell-div">
   <span class="input-label-span">{title}</span>
-  <input bind:value class="input" type="text" />
+  <input bind:value class="input" type="password" />
 </div>
 
 <style>

@@ -12,7 +12,7 @@ export const openSnackbar = (message: string): void => {
   timer = setTimeout(() => {
     messageSnackbar.classList.add('snackbar-hidden');
     timer = null;
-  }, 3000);
+  }, 5000);
 };
 
 export const closeSnackbar = (): void => {

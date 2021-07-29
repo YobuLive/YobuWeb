@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Router } from '@roxi/routify';
   import { routes } from '../.routify/routes';
-  import Snackbar from './components/Snackbar.svelte';
+  import SnackbarComponent from './components/SnackbarComponent.svelte';
 </script>
 
 <main>
-  <Snackbar />
+  <SnackbarComponent />
   <Router {routes} />
 </main>
