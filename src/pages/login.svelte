@@ -1,23 +1,64 @@
 <script lang="ts">
+  import { goto } from '@roxi/routify';
+
   import ButtonComponent from '../components/ButtonComponent.svelte';
   import LabelInputComponent from '../components/LabelInputComponent.svelte';
-  import { signInUser } from '../services/auth.service';
+  import PasswordInputComponent from '../components/PasswordInputComponent.svelte';
+  import type { AuthLoginCredentials, AuthRegisterCredentials } from '../datatypes/auth.datatypes';
+  import { signInUser, signUpUser } from '../services/auth.service';
+  import { openSnackbar } from '../services/snackbar.service';
+  import { parseErrors } from '../util/string.util';
 
   let isLoginFormShown: boolean = true;
+  let usernameLogin: string = '';
+  let passwordLogin: string = '';
+  let usernameRegister: string = '';
+  let passwordRegister: string = '';
+  let emailRegister: string = '';
 
   const toggleForm = (): void => {
     isLoginFormShown = !isLoginFormShown;
   };
 
   const loginUser = (): void => {
-    signInUser({ username: 'da3e', password: 'Abc1234!e' })
+    const authLoginCredentials: AuthLoginCredentials = {
+      username: usernameLogin,
+      password: passwordLogin,
+    };
+    signInUser(authLoginCredentials)
       .then((res) => {
-        console.log(res);
+        resetInput();
+        openSnackbar('Welcome back to Yobu!');
+        $goto('/home');
       })
       .catch((err) => {
-        console.log('hello');
-        console.log(err);
+        openSnackbar(parseErrors(err.message));
       });
+  };
+
+  const registerUser = (): void => {
+    const authRegisterCredentials: AuthRegisterCredentials = {
+      username: usernameRegister,
+      password: passwordRegister,
+      email: emailRegister,
+    };
+    signUpUser(authRegisterCredentials)
+      .then((res) => {
+        resetInput();
+        openSnackbar('Welcome to Yobu!');
+        $goto('/onboard');
+      })
+      .catch((err) => {
+        openSnackbar(parseErrors(err.message));
+      });
+  };
+
+  const resetInput = (): void => {
+    usernameLogin = '';
+    passwordLogin = '';
+    usernameRegister = '';
+    passwordRegister = '';
+    emailRegister = '';
   };
 </script>
 
@@ -27,18 +68,18 @@
       {#if isLoginFormShown}
         <span class="title-span">Yobu LIVE!</span>
         <div class="input-div">
-          <LabelInputComponent type="text" title="Username" />
-          <LabelInputComponent type="password" title="Password" />
+          <LabelInputComponent bind:value={usernameLogin} title="Username" />
+          <PasswordInputComponent bind:value={passwordLogin} title="Password" />
         </div>
         <ButtonComponent label="Login" onPress={loginUser} />
         <span class="click-span" on:click={toggleForm}>Click here to register</span>
       {:else}
         <div class="input-div">
-          <LabelInputComponent type="text" title="Email" />
-          <LabelInputComponent type="password" title="Password" />
-          <LabelInputComponent type="password" title="Re-Password" />
+          <LabelInputComponent bind:value={emailRegister} title="Email" />
+          <LabelInputComponent bind:value={usernameRegister} title="Username" />
+          <PasswordInputComponent bind:value={passwordRegister} title="Password" />
         </div>
-        <ButtonComponent label="Register" onPress={toggleForm} />
+        <ButtonComponent label="Register" onPress={registerUser} />
         <span class="click-span" on:click={toggleForm}>Have an account? Login here!</span>
       {/if}
     </div>

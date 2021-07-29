@@ -6,3 +6,9 @@ export interface AuthLoginCredentials {
 export interface AuthLoginResponse {
   accessToken: string;
 }
+
+export interface AuthRegisterCredentials {
+  username: string;
+  email: string;
+  password: string;
+}
