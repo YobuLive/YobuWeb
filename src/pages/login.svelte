@@ -1,6 +1,7 @@
 <script lang="ts">
   import ButtonComponent from '../components/ButtonComponent.svelte';
   import LabelInputComponent from '../components/LabelInputComponent.svelte';
+  import { signInUser } from '../services/auth.service';
 
   let isLoginFormShown: boolean = true;
 
@@ -9,7 +10,14 @@
   };
 
   const loginUser = (): void => {
-    console.log('Login');
+    signInUser({ username: 'da3e', password: 'Abc1234!e' })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log('hello');
+        console.log(err);
+      });
   };
 </script>
 
