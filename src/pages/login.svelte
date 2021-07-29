@@ -2,6 +2,7 @@
   import ButtonComponent from '../components/ButtonComponent.svelte';
   import LabelInputComponent from '../components/LabelInputComponent.svelte';
   import { signInUser } from '../services/auth.service';
+  import { openSnackbar } from '../services/snackbar.service';
 
   let isLoginFormShown: boolean = true;
 
@@ -10,13 +11,12 @@
   };
 
   const loginUser = (): void => {
-    signInUser({ username: 'da3e', password: 'Abc1234!e' })
+    signInUser({ username: 'da3e', password: 'Abc1234!' })
       .then((res) => {
-        console.log(res);
+        openSnackbar('Successful!');
       })
       .catch((err) => {
-        console.log('hello');
-        console.log(err);
+        openSnackbar(err.message);
       });
   };
 </script>
