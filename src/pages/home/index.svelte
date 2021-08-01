@@ -1,21 +1,23 @@
 <script lang="ts">
-  import { goto } from '@roxi/routify';
-  import { removeAccessToken } from '../../services/cookie.service';
+  import HomeSidebarComponent from '../../components/HomeSidebarComponent.svelte';
 
-  const logoutUser = (): void => {
-    removeAccessToken();
-    $goto('/login');
+  let isBarToggled: boolean = false;
+
+  const toggleSidebar = (): void => {
+    const sidebarElement = document.getElementById('sidebar');
+    const contentElement = document.getElementById('content');
+    sidebarElement.style.left = isBarToggled ? '-150px' : '0';
+    contentElement.style.marginLeft = isBarToggled ? '0px' : '150px';
+    isBarToggled = !isBarToggled;
   };
 </script>
 
 <main>
-  <div class="main-div">
-    <span class="title-span">Yobu Live</span>
-    <span
-      >This site is under construction. Exciting things will pop up soon.
-      <span class="click-span" on:click={logoutUser}>Click here to log out!</span>
-    </span>
-  </div>
+  <button on:click={() => toggleSidebar()} />
+  <aside id="sidebar" class="sidebar-wrapper">
+    <HomeSidebarComponent closeBar={toggleSidebar} />
+  </aside>
+  <div id="content">This is the home page.</div>
 </main>
 
 <style>
@@ -24,26 +26,19 @@
     background-color: #f0d9ea;
   }
 
-  .main-div {
-    height: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  #content {
+    transition: margin-left 0.8s ease-in-out;
+    -moz-transition: margin-left 0.8s ease-in-out;
+    -o-transition: margin-left 0.8s ease-in-out;
+    -webkit-transition: margin-left 0.8s ease-in-out;
   }
 
-  .title-span {
-    font-size: 5rem;
-    color: #9d6079;
-  }
-
-  .click-span {
-    text-decoration: underline;
-    color: black;
-  }
-
-  .click-span:hover {
-    opacity: 0.5;
-    cursor: pointer;
+  .sidebar-wrapper {
+    left: -150px;
+    position: absolute;
+    transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
   }
 </style>

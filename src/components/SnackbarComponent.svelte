@@ -29,6 +29,7 @@
     visibility: visible;
     -webkit-animation: fadein 0.5s;
     animation: fadein 0.5s;
+    border: 1px white solid;
   }
 
   .snackbar-hidden {
