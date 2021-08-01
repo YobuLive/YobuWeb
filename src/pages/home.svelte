@@ -1,5 +1,6 @@
 <script lang="ts">
   import { url } from '@roxi/routify';
+  import { getAccessToken } from '../services/cookie.service';
 </script>
 
 <main>

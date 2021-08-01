@@ -4,8 +4,9 @@
   import ButtonComponent from '../components/ButtonComponent.svelte';
   import LabelInputComponent from '../components/LabelInputComponent.svelte';
   import PasswordInputComponent from '../components/PasswordInputComponent.svelte';
-  import type { AuthLoginCredentials, AuthRegisterCredentials } from '../datatypes/auth.datatypes';
+  import type { AuthLoginCredentials, AuthLoginResponse, AuthRegisterCredentials } from '../datatypes/auth.datatypes';
   import { signInUser, signUpUser } from '../services/auth.service';
+  import { setAccessToken } from '../services/cookie.service';
   import { openSnackbar } from '../services/snackbar.service';
   import { parseErrors } from '../util/string.util';
 
@@ -26,7 +27,9 @@
       password: passwordLogin,
     };
     signInUser(authLoginCredentials)
-      .then((res) => {
+      .then((res: AuthLoginResponse) => {
+        setAccessToken(res.accessToken);
+        console.log(res.accessToken);
         resetInput();
         openSnackbar('Welcome back to Yobu!');
         $goto('/home');
@@ -44,6 +47,7 @@
     };
     signUpUser(authRegisterCredentials)
       .then((res) => {
+        // Send email to activate
         resetInput();
         openSnackbar('Welcome to Yobu!');
         $goto('/onboard');
