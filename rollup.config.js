@@ -45,7 +45,7 @@ export default {
   },
   plugins: [
     replace({
-      CONFIG_BASE_API_URL: production ? JSON.stringify(process.env.CONFIG_BASE_API_DEV) : JSON.stringify(process.env.CONFIG_BASE_API_LOCAL),
+      CONFIG_BASE_API_URL: JSON.stringify(process.env.CONFIG_BASE_API),
     }),
     svelte({
       preprocess: sveltePreprocess({ sourceMap: !production }),
