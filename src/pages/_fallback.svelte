@@ -4,9 +4,9 @@
 
 <main>
   <div class="main-div">
-    <span class="title-span">Glad to have you on board!</span>
-    <span>Congrats on creating an account!</span>
-    <a class="click-span" href={$url('/login')}>Click here to login.</a>
+    <span class="title-span">Error 404</span>
+    <span> This page doesn't exist at the moment :(</span>
+    <a class="click-span" href={$url('/home')}>Click here to go back.</a>
   </div>
 </main>
 
