@@ -23,3 +23,7 @@ export const removeCookie = (key: string): void => {
 export const removeAccessToken = (): void => {
   Cookies.remove('accessToken');
 };
+
+export const checkSession = (): boolean => {
+  return Cookies.get('accessToken') ? true : false;
+};

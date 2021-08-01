@@ -1,6 +1,11 @@
 <script lang="ts">
-  import { url } from '@roxi/routify';
-  import { getAccessToken } from '../services/cookie.service';
+  import { goto } from '@roxi/routify';
+  import { removeAccessToken } from '../../services/cookie.service';
+
+  const logoutUser = (): void => {
+    removeAccessToken();
+    $goto('/login');
+  };
 </script>
 
 <main>
@@ -8,7 +13,7 @@
     <span class="title-span">Yobu Live</span>
     <span
       >This site is under construction. Exciting things will pop up soon.
-      <a class="click-span" href={$url('./login')}>Click here to log out!</a>
+      <span class="click-span" on:click={logoutUser}>Click here to log out!</span>
     </span>
   </div>
 </main>

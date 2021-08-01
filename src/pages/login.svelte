@@ -29,7 +29,6 @@
     signInUser(authLoginCredentials)
       .then((res: AuthLoginResponse) => {
         setAccessToken(res.accessToken);
-        console.log(res.accessToken);
         resetInput();
         openSnackbar('Welcome back to Yobu!');
         $goto('/home');
