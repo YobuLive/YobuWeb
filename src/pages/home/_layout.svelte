@@ -25,7 +25,7 @@
 </script>
 
 <main>
-  {#if isLoggedIn || true}
+  {#if isLoggedIn}
     <img alt="" src="/images/sidebar-icon.png" id="toggle-layout" on:click={() => toggleSidebar()} />
     <aside id="sidebar-layout">
       <HomeSidebarComponent closeBar={toggleSidebar} />

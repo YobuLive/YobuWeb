@@ -10,6 +10,14 @@
     openSnackbar('This function is still under construction. Come back later!');
   };
 
+  const goToSettings = (): void => {
+    $goto('/home/settings');
+  };
+
+  const goToHome = (): void => {
+    $goto('/home');
+  };
+
   const logoutUser = (): void => {
     removeAccessToken();
     $goto('/login');
@@ -22,8 +30,8 @@
     <img alt="" src="/images/close-sidebar-icon.png" id="toggle-layout" on:click={() => closeBar()} />
   </div>
   <SidebarButtonComponent label="Log Out" onPress={logoutUser} />
-  <SidebarButtonComponent label="Home" onPress={testPress} />
-  <SidebarButtonComponent label="Settings" onPress={testPress} />
+  <SidebarButtonComponent label="Home" onPress={goToHome} />
+  <SidebarButtonComponent label="Settings" onPress={goToSettings} />
   <SidebarButtonComponent label="Chat" onPress={testPress} />
 </div>
 
