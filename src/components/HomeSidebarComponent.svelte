@@ -19,15 +19,25 @@
 <div class="sidebar-wrapper">
   <div class="logo-wrapper">
     <span class="logo-title">Yobu</span>
-    <div class="hide-button" on:click={() => closeBar()}>Hide</div>
+    <img alt="" src="/images/close-sidebar-icon.png" id="toggle-layout" on:click={() => closeBar()} />
   </div>
   <SidebarButtonComponent label="Log Out" onPress={logoutUser} />
   <SidebarButtonComponent label="Home" onPress={testPress} />
-  <SidebarButtonComponent label="Profile" onPress={testPress} />
+  <SidebarButtonComponent label="Settings" onPress={testPress} />
   <SidebarButtonComponent label="Chat" onPress={testPress} />
 </div>
 
 <style>
+  #toggle-layout:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  #toggle-layout {
+    min-width: 24px;
+    height: auto;
+    margin: 8px;
+  }
   .sidebar-wrapper {
     display: flex;
     flex-direction: column;
